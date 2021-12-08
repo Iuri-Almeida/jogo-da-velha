@@ -1,8 +1,11 @@
 package br.com.ialmeida.application;
 
+import br.com.ialmeida.boardgame.BoardException;
+import br.com.ialmeida.tictactoe.TicTacToeException;
 import br.com.ialmeida.tictactoe.TicTacToeMatch;
 import br.com.ialmeida.tictactoe.TicTacToePosition;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program {
@@ -13,14 +16,22 @@ public class Program {
 
         while (true) {
 
-            UI.printBoard(match.getPieces());
+            try {
+                UI.clearScreen();
+                UI.printBoard(match.getPieces());
 
-            System.out.println();
-            System.out.print("Target: ");
+                System.out.println();
+                System.out.print("Target: ");
 
-            TicTacToePosition target = UI.readTicTacToePosition(sc);
+                TicTacToePosition target = UI.readTicTacToePosition(sc);
 
-            match.performMove(target);
+                match.performMove(target);
+            } catch (BoardException | InputMismatchException e) {
+                System.out.println(e.getMessage() + "\n");
+                System.out.println("Click ENTER to continue.");
+                sc.nextLine();
+            }
+
 
         }
 
