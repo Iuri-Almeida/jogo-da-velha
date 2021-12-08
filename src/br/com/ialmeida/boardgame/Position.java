@@ -1,27 +1,27 @@
 package br.com.ialmeida.boardgame;
 
 public class Position {
-    private byte row;
-    private byte column;
+    private int row;
+    private int column;
 
-    public Position(byte row, byte column) {
+    public Position(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
-    public byte getRow() {
+    public int getRow() {
         return row;
     }
 
-    public void setRow(byte row) {
+    public void setRow(int row) {
         this.row = row;
     }
 
-    public byte getColumn() {
+    public int getColumn() {
         return column;
     }
 
-    public void setColumn(byte column) {
+    public void setColumn(int column) {
         this.column = column;
     }
 

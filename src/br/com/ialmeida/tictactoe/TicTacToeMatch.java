@@ -1,6 +1,9 @@
 package br.com.ialmeida.tictactoe;
 
 import br.com.ialmeida.boardgame.Board;
+import br.com.ialmeida.boardgame.Position;
+import br.com.ialmeida.tictactoe.pieces.O;
+import br.com.ialmeida.tictactoe.pieces.X;
 
 public class TicTacToeMatch {
 
@@ -8,6 +11,8 @@ public class TicTacToeMatch {
 
     public TicTacToeMatch() {
         board = new Board(3, 3);
+
+        initialSetup();
     }
 
     public TicTacToePiece[][] getPieces() {
@@ -24,5 +29,11 @@ public class TicTacToeMatch {
         }
 
         return pieces;
+    }
+
+    private void initialSetup() {
+        board.placePiece(new X(board, Player.X), new Position(0, 1));
+        board.placePiece(new O(board, Player.O), new Position(1, 1));
+        board.placePiece(new X(board, Player.X), new Position(2, 2));
     }
 }
