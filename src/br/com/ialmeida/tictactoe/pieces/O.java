@@ -13,4 +13,9 @@ public class O extends TicTacToePiece {
     public String toString() {
         return "O";
     }
+
+    @Override
+    public boolean[][] possibleMoves() {
+        return new boolean[getBoard().getRows()][getBoard().getColumns()];
+    }
 }
