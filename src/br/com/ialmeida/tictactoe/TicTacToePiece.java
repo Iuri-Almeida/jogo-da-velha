@@ -3,7 +3,7 @@ package br.com.ialmeida.tictactoe;
 import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.Piece;
 
-public abstract class TicTacToePiece extends Piece {
+public class TicTacToePiece extends Piece {
 
     private final Player player;
 
