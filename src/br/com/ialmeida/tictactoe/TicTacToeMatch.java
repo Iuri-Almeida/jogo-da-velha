@@ -32,6 +32,10 @@ public class TicTacToeMatch {
         return pieces;
     }
 
+    public boolean[][] possibleMoves() {
+        return board.possibleMoves();
+    }
+
     public void performMove(TicTacToePosition targetPosition) {
         Position target = targetPosition.toPosition();
         makeMove(target);

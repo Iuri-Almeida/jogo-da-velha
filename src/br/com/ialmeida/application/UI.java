@@ -41,7 +41,7 @@ public class UI {
 
             for (int j = 0; j < columns; j++) {
 
-                printPiece(pieces[i][j]);
+                printPiece(pieces[i][j], false);
 
             }
 
@@ -52,9 +52,36 @@ public class UI {
 
     }
 
-    private static void printPiece(TicTacToePiece piece) {
+    public static void printBoard(TicTacToePiece[][] pieces, boolean[][] possibleMoves) {
+
+        int rows = pieces.length;
+        int columns = pieces[0].length;
+
+        for (int i = 0; i < rows; i++) {
+
+            System.out.print((rows - i) + " ");
+
+            for (int j = 0; j < columns; j++) {
+
+                printPiece(pieces[i][j], possibleMoves[i][j]);
+
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("  a b c");
+
+    }
+
+    private static void printPiece(TicTacToePiece piece, boolean background) {
+
+        if (background) {
+            System.out.print(ProgramConstants.BACKGROUND_COLOR);
+        }
+
         if (piece == null) {
-            System.out.print("-");
+            System.out.print("-" + ProgramConstants.RESET_COLOR);
         } else {
 
             if (piece.getPlayer() == Player.X) {
