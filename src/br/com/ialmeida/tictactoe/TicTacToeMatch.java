@@ -32,6 +32,15 @@ public class TicTacToeMatch {
         return pieces;
     }
 
+    public void performMove(TicTacToePosition targetPosition) {
+        Position target = targetPosition.toPosition();
+        makeMove(target);
+    }
+
+    private void makeMove(Position target) {
+        board.placePiece(new X(board, Player.X), target);
+    }
+
     private void placeNewPiece(char column, int row, TicTacToePiece piece) {
         board.placePiece(piece, new TicTacToePosition(column, row).toPosition());
     }

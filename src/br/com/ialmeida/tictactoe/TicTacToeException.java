@@ -1,6 +1,8 @@
 package br.com.ialmeida.tictactoe;
 
-public class TicTacToeException extends RuntimeException {
+import br.com.ialmeida.boardgame.BoardException;
+
+public class TicTacToeException extends BoardException {
     public TicTacToeException(String msg) {
         super(msg);
     }
