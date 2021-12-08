@@ -2,18 +2,31 @@ package br.com.ialmeida.tictactoe;
 
 import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
+import br.com.ialmeida.boardgame.Piece;
 import br.com.ialmeida.boardgame.Position;
 import br.com.ialmeida.tictactoe.pieces.O;
 import br.com.ialmeida.tictactoe.pieces.X;
 
 public class TicTacToeMatch {
 
+    private int turn;
+    private Player currentPlayer;
     private final Board board;
 
     public TicTacToeMatch() {
         board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
+        turn = 1;
+        currentPlayer = Player.X;
 
         initialSetup();
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
     }
 
     public TicTacToePiece[][] getPieces() {
@@ -38,11 +51,20 @@ public class TicTacToeMatch {
 
     public void performMove(TicTacToePosition targetPosition) {
         Position target = targetPosition.toPosition();
+
         makeMove(target);
+
+        nextTurn();
     }
 
     private void makeMove(Position target) {
-        board.placePiece(new X(board, Player.X), target);
+        Piece piece = (currentPlayer == Player.X) ? new X(board, Player.X) : new O(board, Player.O);
+        board.placePiece(piece, target);
+    }
+
+    private void nextTurn() {
+        turn++;
+        currentPlayer = (currentPlayer == Player.X) ? Player.O : Player.X;
     }
 
     private void placeNewPiece(char column, int row, TicTacToePiece piece) {

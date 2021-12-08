@@ -16,6 +16,9 @@ public class Program {
         while (true) {
 
             try {
+
+                UI.printMatch(match);
+
                 boolean[][] possibleMoves = match.possibleMoves();
 
                 UI.clearScreen();

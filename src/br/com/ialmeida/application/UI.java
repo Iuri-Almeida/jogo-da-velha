@@ -1,6 +1,7 @@
 package br.com.ialmeida.application;
 
 import br.com.ialmeida.tictactoe.Player;
+import br.com.ialmeida.tictactoe.TicTacToeMatch;
 import br.com.ialmeida.tictactoe.TicTacToePiece;
 import br.com.ialmeida.tictactoe.TicTacToePosition;
 
@@ -28,6 +29,14 @@ public class UI {
             throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to c3.");
         }
 
+    }
+
+    public static void printMatch(TicTacToeMatch match) {
+//        printBoard(match.getPieces());
+
+        System.out.println();
+        System.out.println("Turn: " + match.getTurn());
+        System.out.println("Waiting player: " + match.getCurrentPlayer() + "\n");
     }
 
     public static void printBoard(TicTacToePiece[][] pieces) {
