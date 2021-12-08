@@ -37,9 +37,9 @@ public class TicTacToeMatch {
     }
 
     private void initialSetup() {
-        placeNewPiece('a', 1, new O(board, Player.X));
+        placeNewPiece('a', 1, new O(board, Player.O));
         placeNewPiece('b', 2, new X(board, Player.X));
-        placeNewPiece('c', 3, new O(board, Player.X));
+        placeNewPiece('c', 3, new O(board, Player.O));
         placeNewPiece('a', 2, new X(board, Player.X));
     }
 }

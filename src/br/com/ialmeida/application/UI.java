@@ -1,5 +1,6 @@
 package br.com.ialmeida.application;
 
+import br.com.ialmeida.tictactoe.Player;
 import br.com.ialmeida.tictactoe.TicTacToePiece;
 
 public class UI {
@@ -15,9 +16,7 @@ public class UI {
 
             for (int j = 0; j < columns; j++) {
 
-                TicTacToePiece piece = pieces[i][j];
-
-                System.out.print(((piece == null) ? "-" : piece) + " ");
+                printPiece(pieces[i][j]);
 
             }
 
@@ -26,5 +25,21 @@ public class UI {
 
         System.out.println("  a b c");
 
+    }
+
+    private static void printPiece(TicTacToePiece piece) {
+        if (piece == null) {
+            System.out.print("-");
+        } else {
+
+            if (piece.getPlayer() == Player.X) {
+                System.out.print(ProgramConstants.X_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+            } else {
+                System.out.print(ProgramConstants.O_PIECE_COLOR + piece + ProgramConstants.RESET_COLOR);
+            }
+
+        }
+
+        System.out.print(" ");
     }
 }
