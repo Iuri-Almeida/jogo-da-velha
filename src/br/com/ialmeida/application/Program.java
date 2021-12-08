@@ -1,6 +1,5 @@
 package br.com.ialmeida.application;
 
-import br.com.ialmeida.boardgame.BoardException;
 import br.com.ialmeida.tictactoe.TicTacToeException;
 import br.com.ialmeida.tictactoe.TicTacToeMatch;
 import br.com.ialmeida.tictactoe.TicTacToePosition;
@@ -26,7 +25,7 @@ public class Program {
                 TicTacToePosition target = UI.readTicTacToePosition(sc);
 
                 match.performMove(target);
-            } catch (BoardException | InputMismatchException e) {
+            } catch (TicTacToeException | InputMismatchException e) {
                 System.out.println(e.getMessage() + "\n");
                 System.out.println("Click ENTER to continue.");
                 sc.nextLine();
