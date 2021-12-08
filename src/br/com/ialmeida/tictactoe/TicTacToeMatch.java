@@ -1,5 +1,6 @@
 package br.com.ialmeida.tictactoe;
 
+import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.Position;
 import br.com.ialmeida.tictactoe.pieces.O;
@@ -10,7 +11,7 @@ public class TicTacToeMatch {
     private final Board board;
 
     public TicTacToeMatch() {
-        board = new Board(3, 3);
+        board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
 
         initialSetup();
     }
@@ -31,9 +32,14 @@ public class TicTacToeMatch {
         return pieces;
     }
 
+    private void placeNewPiece(char column, int row, TicTacToePiece piece) {
+        board.placePiece(piece, new TicTacToePosition(column, row).toPosition());
+    }
+
     private void initialSetup() {
-        board.placePiece(new X(board, Player.X), new Position(0, 1));
-        board.placePiece(new O(board, Player.O), new Position(1, 1));
-        board.placePiece(new X(board, Player.X), new Position(2, 2));
+        placeNewPiece('a', 1, new O(board, Player.X));
+        placeNewPiece('b', 2, new X(board, Player.X));
+        placeNewPiece('c', 3, new O(board, Player.X));
+        placeNewPiece('a', 2, new X(board, Player.X));
     }
 }
