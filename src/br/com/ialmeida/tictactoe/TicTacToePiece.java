@@ -15,4 +15,8 @@ public class TicTacToePiece extends Piece {
         return player;
     }
 
+    @Override
+    public String toString() {
+        return player.toString();
+    }
 }

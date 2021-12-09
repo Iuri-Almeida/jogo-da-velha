@@ -4,8 +4,6 @@ import br.com.ialmeida.application.ProgramConstants;
 import br.com.ialmeida.boardgame.Board;
 import br.com.ialmeida.boardgame.Piece;
 import br.com.ialmeida.boardgame.Position;
-import br.com.ialmeida.tictactoe.pieces.O;
-import br.com.ialmeida.tictactoe.pieces.X;
 
 public class TicTacToeMatch {
 
@@ -70,7 +68,7 @@ public class TicTacToeMatch {
     }
 
     private void makeMove(Position target) {
-        Piece piece = (currentPlayer == Player.X) ? new X(Player.X) : new O(Player.O);
+        Piece piece = (currentPlayer == Player.X) ? new TicTacToePiece(Player.X) : new TicTacToePiece(Player.O);
         board.placePiece(piece, target);
     }
 
