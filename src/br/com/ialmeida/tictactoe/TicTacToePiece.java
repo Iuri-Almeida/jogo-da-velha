@@ -15,4 +15,8 @@ public class TicTacToePiece extends Piece {
     public Player getPlayer() {
         return player;
     }
+
+    public TicTacToePosition getTicTacToePosition() {
+        return TicTacToePosition.fromPosition(position);
+    }
 }

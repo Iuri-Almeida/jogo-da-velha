@@ -13,16 +13,11 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         TicTacToeMatch match = new TicTacToeMatch();
 
-        while (true) {
+        while (!match.isGameEnded()) {
 
             try {
-
-                UI.printMatch(match);
-
-                boolean[][] possibleMoves = match.possibleMoves();
-
                 UI.clearScreen();
-                UI.printBoard(match.getPieces(), possibleMoves);
+                UI.printMatch(match, match.possibleMoves());
 
                 System.out.println();
                 System.out.print("Target: ");
@@ -36,10 +31,12 @@ public class Program {
                 sc.nextLine();
             }
 
-
         }
 
-//        sc.close();
+        sc.close();
+
+        UI.clearScreen();
+        UI.printMatch(match, match.possibleMoves());
 
     }
 }

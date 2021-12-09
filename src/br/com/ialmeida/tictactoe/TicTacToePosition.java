@@ -38,7 +38,7 @@ public class TicTacToePosition {
     public static TicTacToePosition fromPosition(Position position) {
 
         int row = ProgramConstants.ROWS - position.getRow();
-        char column = (char) (ProgramConstants.FIRST_COLUMN - position.getColumn());
+        char column = (char) (ProgramConstants.FIRST_COLUMN + position.getColumn());
 
         return new TicTacToePosition(column, row);
     }

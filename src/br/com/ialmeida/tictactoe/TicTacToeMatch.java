@@ -12,13 +12,12 @@ public class TicTacToeMatch {
     private int turn;
     private Player currentPlayer;
     private final Board board;
+    private boolean gameEnded;
 
     public TicTacToeMatch() {
         board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
         turn = 1;
         currentPlayer = Player.X;
-
-        initialSetup();
     }
 
     public int getTurn() {
@@ -27,6 +26,10 @@ public class TicTacToeMatch {
 
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public boolean isGameEnded() {
+        return gameEnded;
     }
 
     public TicTacToePiece[][] getPieces() {
@@ -54,7 +57,11 @@ public class TicTacToeMatch {
 
         makeMove(target);
 
-        nextTurn();
+        gameEnded = testEndGame();
+
+        if (!gameEnded) {
+            nextTurn();
+        }
     }
 
     private void makeMove(Position target) {
@@ -67,14 +74,85 @@ public class TicTacToeMatch {
         currentPlayer = (currentPlayer == Player.X) ? Player.O : Player.X;
     }
 
-    private void placeNewPiece(char column, int row, TicTacToePiece piece) {
-        board.placePiece(piece, new TicTacToePosition(column, row).toPosition());
+    private boolean testLines(TicTacToePiece[][] pieces) {
+        boolean l1 = false;
+        boolean l2 = false;
+        boolean l3 = false;
+
+        if (pieces[0][0] != null && pieces[0][1] != null && pieces[0][2] != null) {
+            l1 = pieces[0][0].getPlayer() == pieces[0][1].getPlayer() && pieces[0][0].getPlayer() == pieces[0][2].getPlayer();
+        }
+
+        if (pieces[1][0] != null && pieces[1][1] != null && pieces[1][2] != null) {
+            l2 = pieces[1][0].getPlayer() == pieces[1][1].getPlayer() && pieces[1][0].getPlayer() == pieces[1][2].getPlayer();
+        }
+
+        if (pieces[2][0] != null && pieces[2][1] != null && pieces[2][2] != null) {
+            l3 = pieces[2][0].getPlayer() == pieces[2][1].getPlayer() && pieces[2][0].getPlayer() == pieces[2][2].getPlayer();
+        }
+
+        return l1 || l2 || l3;
     }
 
-    private void initialSetup() {
-        placeNewPiece('a', 1, new O(board, Player.O));
-        placeNewPiece('b', 2, new X(board, Player.X));
-        placeNewPiece('c', 3, new O(board, Player.O));
-        placeNewPiece('a', 2, new X(board, Player.X));
+    private boolean testColumns(TicTacToePiece[][] pieces) {
+        boolean c1 = false;
+        boolean c2 = false;
+        boolean c3 = false;
+
+        if (pieces[0][0] != null && pieces[1][0] != null && pieces[2][0] != null) {
+            c1 = pieces[0][0].getPlayer() == pieces[1][0].getPlayer() && pieces[0][0].getPlayer() == pieces[2][0].getPlayer();
+        }
+
+        if (pieces[0][1] != null && pieces[1][1] != null && pieces[2][1] != null) {
+            c2 = pieces[0][1].getPlayer() == pieces[1][1].getPlayer() && pieces[0][1].getPlayer() == pieces[2][1].getPlayer();
+        }
+
+        if (pieces[0][2] != null && pieces[1][2] != null && pieces[2][2] != null) {
+            c3 = pieces[0][2].getPlayer() == pieces[1][2].getPlayer() && pieces[0][2].getPlayer() == pieces[2][2].getPlayer();
+        }
+
+        return c1 || c2 || c3;
+    }
+
+    private boolean testDiagonal(TicTacToePiece[][] pieces) {
+        boolean d1 = false;
+        boolean d2 = false;
+
+        if (pieces[0][0] != null && pieces[1][1] != null && pieces[2][2] != null) {
+            d1 = pieces[0][0].getPlayer() == pieces[1][1].getPlayer() && pieces[0][0].getPlayer() == pieces[2][2].getPlayer();
+        }
+
+        if (pieces[0][2] != null && pieces[1][1] != null && pieces[2][0] != null) {
+            d2 = pieces[0][2].getPlayer() == pieces[1][1].getPlayer() && pieces[0][2].getPlayer() == pieces[2][0].getPlayer();
+        }
+
+        return d1 || d2;
+    }
+
+    private boolean testWinner() {
+        TicTacToePiece[][] pieces = getPieces();
+        return testLines(pieces) || testColumns(pieces) || testDiagonal(pieces);
+    }
+
+    private boolean testEndGame() {
+
+        if (testWinner()) {
+            return true;
+        }
+
+        boolean[][] mat = board.possibleMoves();
+
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                if (mat[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void placeNewPiece(char column, int row, TicTacToePiece piece) {
+        board.placePiece(piece, new TicTacToePosition(column, row).toPosition());
     }
 }

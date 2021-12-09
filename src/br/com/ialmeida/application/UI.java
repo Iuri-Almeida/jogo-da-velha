@@ -31,12 +31,18 @@ public class UI {
 
     }
 
-    public static void printMatch(TicTacToeMatch match) {
-//        printBoard(match.getPieces());
+    public static void printMatch(TicTacToeMatch match, boolean[][] possibleMoves) {
+
+        printBoard(match.getPieces(), possibleMoves);
 
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
-        System.out.println("Waiting player: " + match.getCurrentPlayer() + "\n");
+
+        if (!match.isGameEnded()) {
+            System.out.println("Waiting player: " + match.getCurrentPlayer() + "\n");
+        } else {
+            System.out.println("Winner: " + match.getCurrentPlayer());
+        }
     }
 
     public static void printBoard(TicTacToePiece[][] pieces) {
@@ -46,7 +52,7 @@ public class UI {
 
         for (int i = 0; i < rows; i++) {
 
-            System.out.print((rows - i) + " ");
+            System.out.print(ProgramConstants.INDICATORS_COLOR + (rows - i) + " " + ProgramConstants.RESET_COLOR);
 
             for (int j = 0; j < columns; j++) {
 
@@ -57,7 +63,7 @@ public class UI {
             System.out.println();
         }
 
-        System.out.println("  a b c");
+        System.out.println(ProgramConstants.INDICATORS_COLOR + "  a b c" + ProgramConstants.RESET_COLOR);
 
     }
 
@@ -68,7 +74,7 @@ public class UI {
 
         for (int i = 0; i < rows; i++) {
 
-            System.out.print((rows - i) + " ");
+            System.out.print(ProgramConstants.INDICATORS_COLOR + (rows - i) + " " + ProgramConstants.RESET_COLOR);
 
             for (int j = 0; j < columns; j++) {
 
@@ -79,7 +85,7 @@ public class UI {
             System.out.println();
         }
 
-        System.out.println("  a b c");
+        System.out.println(ProgramConstants.INDICATORS_COLOR + "  a b c" + ProgramConstants.RESET_COLOR);
 
     }
 
