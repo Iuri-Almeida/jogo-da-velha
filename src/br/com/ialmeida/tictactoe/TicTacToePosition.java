@@ -5,8 +5,8 @@ import br.com.ialmeida.boardgame.Position;
 
 public class TicTacToePosition {
 
-    private int row;
-    private char column;
+    private final int row;
+    private final char column;
 
     public TicTacToePosition(char column, int row) {
 
@@ -19,28 +19,12 @@ public class TicTacToePosition {
         this.column = column;
     }
 
-    public int getRow() {
-        return row;
-    }
-
-    public char getColumn() {
-        return column;
-    }
-
     public Position toPosition() {
 
         int row = ProgramConstants.ROWS - this.row;
         int column = this.column - ProgramConstants.FIRST_COLUMN;
 
         return new Position(row, column);
-    }
-
-    public static TicTacToePosition fromPosition(Position position) {
-
-        int row = ProgramConstants.ROWS - position.getRow();
-        char column = (char) (ProgramConstants.FIRST_COLUMN + position.getColumn());
-
-        return new TicTacToePosition(column, row);
     }
 
     @Override

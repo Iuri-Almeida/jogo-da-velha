@@ -158,7 +158,4 @@ public class TicTacToeMatch {
         return true;
     }
 
-    private void placeNewPiece(char column, int row, TicTacToePiece piece) {
-        board.placePiece(piece, new TicTacToePosition(column, row).toPosition());
-    }
 }
