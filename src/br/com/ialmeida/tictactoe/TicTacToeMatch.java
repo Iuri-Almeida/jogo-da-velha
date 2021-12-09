@@ -80,43 +80,27 @@ public class TicTacToeMatch {
     }
 
     private boolean testLines(TicTacToePiece[][] pieces) {
-        boolean l1 = false;
-        boolean l2 = false;
-        boolean l3 = false;
+        boolean l = false;
 
-        if (pieces[0][0] != null && pieces[0][1] != null && pieces[0][2] != null) {
-            l1 = pieces[0][0].getPlayer() == pieces[0][1].getPlayer() && pieces[0][0].getPlayer() == pieces[0][2].getPlayer();
+        for (TicTacToePiece[] piece : pieces) {
+            if (piece[0] != null && piece[1] != null && piece[2] != null) {
+                l = piece[0].getPlayer() == piece[1].getPlayer() && piece[0].getPlayer() == piece[2].getPlayer();
+            }
         }
 
-        if (pieces[1][0] != null && pieces[1][1] != null && pieces[1][2] != null) {
-            l2 = pieces[1][0].getPlayer() == pieces[1][1].getPlayer() && pieces[1][0].getPlayer() == pieces[1][2].getPlayer();
-        }
-
-        if (pieces[2][0] != null && pieces[2][1] != null && pieces[2][2] != null) {
-            l3 = pieces[2][0].getPlayer() == pieces[2][1].getPlayer() && pieces[2][0].getPlayer() == pieces[2][2].getPlayer();
-        }
-
-        return l1 || l2 || l3;
+        return l;
     }
 
     private boolean testColumns(TicTacToePiece[][] pieces) {
-        boolean c1 = false;
-        boolean c2 = false;
-        boolean c3 = false;
+        boolean c = false;
 
-        if (pieces[0][0] != null && pieces[1][0] != null && pieces[2][0] != null) {
-            c1 = pieces[0][0].getPlayer() == pieces[1][0].getPlayer() && pieces[0][0].getPlayer() == pieces[2][0].getPlayer();
+        for (int i = 0; i < pieces.length; i++) {
+            if (pieces[0][i] != null && pieces[1][i] != null && pieces[2][i] != null) {
+                c = pieces[0][i].getPlayer() == pieces[1][i].getPlayer() && pieces[0][i].getPlayer() == pieces[2][i].getPlayer();
+            }
         }
 
-        if (pieces[0][1] != null && pieces[1][1] != null && pieces[2][1] != null) {
-            c2 = pieces[0][1].getPlayer() == pieces[1][1].getPlayer() && pieces[0][1].getPlayer() == pieces[2][1].getPlayer();
-        }
-
-        if (pieces[0][2] != null && pieces[1][2] != null && pieces[2][2] != null) {
-            c3 = pieces[0][2].getPlayer() == pieces[1][2].getPlayer() && pieces[0][2].getPlayer() == pieces[2][2].getPlayer();
-        }
-
-        return c1 || c2 || c3;
+        return c;
     }
 
     private boolean testDiagonal(TicTacToePiece[][] pieces) {
