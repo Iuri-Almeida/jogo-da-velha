@@ -46,7 +46,7 @@ public class UI {
             if (match.hasWinner()) {
                 System.out.println(color + "Winner: " + match.getCurrentPlayer() + ProgramConstants.RESET_COLOR);
             } else {
-                System.out.println("Draw");
+                System.out.println(ProgramConstants.DRAW_COLOR + "Draw" + ProgramConstants.RESET_COLOR);
             }
         }
     }
