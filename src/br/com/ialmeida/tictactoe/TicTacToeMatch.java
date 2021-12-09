@@ -13,6 +13,7 @@ public class TicTacToeMatch {
     private Player currentPlayer;
     private final Board board;
     private boolean gameEnded;
+    private boolean hasWinner;
 
     public TicTacToeMatch() {
         board = new Board(ProgramConstants.ROWS, ProgramConstants.COLUMNS);
@@ -30,6 +31,10 @@ public class TicTacToeMatch {
 
     public boolean isGameEnded() {
         return gameEnded;
+    }
+
+    public boolean hasWinner() {
+        return hasWinner;
     }
 
     public TicTacToePiece[][] getPieces() {
@@ -131,7 +136,8 @@ public class TicTacToeMatch {
 
     private boolean testWinner() {
         TicTacToePiece[][] pieces = getPieces();
-        return testLines(pieces) || testColumns(pieces) || testDiagonal(pieces);
+        hasWinner = testLines(pieces) || testColumns(pieces) || testDiagonal(pieces);
+        return hasWinner;
     }
 
     private boolean testEndGame() {

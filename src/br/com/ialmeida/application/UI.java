@@ -38,36 +38,20 @@ public class UI {
         System.out.println();
         System.out.println("Turn: " + match.getTurn());
 
+        String color = (match.getCurrentPlayer() == Player.X) ? ProgramConstants.X_PIECE_COLOR : ProgramConstants.O_PIECE_COLOR;
+
         if (!match.isGameEnded()) {
-            System.out.println("Waiting player: " + match.getCurrentPlayer() + "\n");
+            System.out.println(color + "Waiting player: " + match.getCurrentPlayer() + ProgramConstants.RESET_COLOR + "\n");
         } else {
-            System.out.println("Winner: " + match.getCurrentPlayer());
-        }
-    }
-
-    public static void printBoard(TicTacToePiece[][] pieces) {
-
-        int rows = pieces.length;
-        int columns = pieces[0].length;
-
-        for (int i = 0; i < rows; i++) {
-
-            System.out.print(ProgramConstants.INDICATORS_COLOR + (rows - i) + " " + ProgramConstants.RESET_COLOR);
-
-            for (int j = 0; j < columns; j++) {
-
-                printPiece(pieces[i][j], false);
-
+            if (match.hasWinner()) {
+                System.out.println(color + "Winner: " + match.getCurrentPlayer() + ProgramConstants.RESET_COLOR);
+            } else {
+                System.out.println("Draw");
             }
-
-            System.out.println();
         }
-
-        System.out.println(ProgramConstants.INDICATORS_COLOR + "  a b c" + ProgramConstants.RESET_COLOR);
-
     }
 
-    public static void printBoard(TicTacToePiece[][] pieces, boolean[][] possibleMoves) {
+    private static void printBoard(TicTacToePiece[][] pieces, boolean[][] possibleMoves) {
 
         int rows = pieces.length;
         int columns = pieces[0].length;
