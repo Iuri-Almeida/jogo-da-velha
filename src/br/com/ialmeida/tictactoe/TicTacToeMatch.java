@@ -12,7 +12,7 @@ public class TicTacToeMatch {
     private int turn;
     private Player currentPlayer;
     private final Board board;
-    private boolean gameEnded;
+    private boolean gameOver;
     private boolean hasWinner;
 
     public TicTacToeMatch() {
@@ -29,8 +29,8 @@ public class TicTacToeMatch {
         return currentPlayer;
     }
 
-    public boolean isGameEnded() {
-        return gameEnded;
+    public boolean isGameOver() {
+        return !gameOver;
     }
 
     public boolean hasWinner() {
@@ -62,15 +62,15 @@ public class TicTacToeMatch {
 
         makeMove(target);
 
-        gameEnded = testEndGame();
+        gameOver = testEndGame();
 
-        if (!gameEnded) {
+        if (!gameOver) {
             nextTurn();
         }
     }
 
     private void makeMove(Position target) {
-        Piece piece = (currentPlayer == Player.X) ? new X(board, Player.X) : new O(board, Player.O);
+        Piece piece = (currentPlayer == Player.X) ? new X(Player.X) : new O(Player.O);
         board.placePiece(piece, target);
     }
 
@@ -130,11 +130,11 @@ public class TicTacToeMatch {
             return true;
         }
 
-        boolean[][] mat = board.possibleMoves();
+        boolean[][] moves = board.possibleMoves();
 
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[0].length; j++) {
-                if (mat[i][j]) {
+        for (boolean[] move : moves) {
+            for (int j = 0; j < moves[0].length; j++) {
+                if (move[j]) {
                     return false;
                 }
             }

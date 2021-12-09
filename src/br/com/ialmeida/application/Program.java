@@ -13,7 +13,7 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         TicTacToeMatch match = new TicTacToeMatch();
 
-        while (!match.isGameEnded()) {
+        while (match.isGameOver()) {
 
             try {
                 UI.clearScreen();

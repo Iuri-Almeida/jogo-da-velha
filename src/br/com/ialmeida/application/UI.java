@@ -40,7 +40,7 @@ public class UI {
 
         String color = (match.getCurrentPlayer() == Player.X) ? ProgramConstants.X_PIECE_COLOR : ProgramConstants.O_PIECE_COLOR;
 
-        if (!match.isGameEnded()) {
+        if (match.isGameOver()) {
             System.out.println(color + "Waiting player: " + match.getCurrentPlayer() + ProgramConstants.RESET_COLOR + "\n");
         } else {
             if (match.hasWinner()) {
